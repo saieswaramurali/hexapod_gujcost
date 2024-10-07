@@ -17,6 +17,7 @@ install(
 # Install Python scripts
 install(PROGRAMS
   src/controller.py
+  src/kinematics.py
   DESTINATION lib/${PROJECT_NAME})
 
 

@@ -17,6 +17,8 @@ install(
 # Install Python scripts
 install(PROGRAMS
   src/controller.py
+  src/kinematics.py
+  src/gait_generation.py
   DESTINATION lib/${PROJECT_NAME})
 
 

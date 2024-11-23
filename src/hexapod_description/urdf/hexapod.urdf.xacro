@@ -1,0 +1,734 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://wiki.ros.org/xacro" name="hexapod">
+
+
+
+    <link name="base_footprint"></link>
+
+    <link name="base_link">
+
+        <inertial>
+            <origin xyz="0.023017229120898014 -0.08464530203925047 0.0008889846005406454" rpy="0.0 -0.0 1.3564505168326057e-48" />
+            <mass value="1.2443830690052136" />
+            <inertia ixx="0.0023689215025013517" iyy="0.002416594595253303" izz="0.004668882923273096" ixy="2.5477598085071404e-05" iyz="-2.859342323275442e-07" ixz="-1.8427596792821278e-07" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/base_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/base_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"></parent>
+        <child link="base_link"></child>
+        <origin xyz="0 0 0" rpy="0 0 0"></origin>
+    </joint>
+
+    <link name="top_cover">
+
+
+        <inertial>
+            <origin xyz="0.023017229120898014 -0.08464530203925047 0.0008889846005406454" rpy="0.0 -0.0 1.3564505168326057e-48" />
+            <mass value="1.2443830690052136" />
+            <inertia ixx="0.0023689215025013517" iyy="0.002416594595253303" izz="0.004668882923273096" ixy="2.5477598085071404e-05" iyz="-2.859342323275442e-07" ixz="-1.8427596792821278e-07" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Top_cover_v1.STL" scale="0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Top_cover_v1.STL" scale="0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="top_cover_joint" type="fixed">
+        <parent link="base_link"></parent>
+        <child link="top_cover"></child>
+        <origin xyz="0 0 0.0553" rpy="0 0 0"></origin>
+    </joint>
+
+
+    <!--LINK 1-->
+
+    <link name="leg_1_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_1_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_1_link_1"></child>
+        <origin xyz="0.0884 0 0.056003" rpy="0 0 0"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+
+    <link name="leg_1_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_1_link_2_joint" type="revolute">
+        <parent link="leg_1_link_1"></parent>
+        <child link="leg_1_link_2"></child>
+        <origin xyz="0.055 0 -0.0230" rpy="0 0 -1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+
+    <link name="leg_1_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_1_link_3_joint" type="revolute">
+        <parent link="leg_1_link_2"></parent>
+        <child link="leg_1_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_2_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_2_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_2_link_1"></child>
+        <origin xyz="0.04359 0.07621 0.056003" rpy="0 0 1.0472"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+
+    <link name="leg_2_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_2_link_2_joint" type="revolute">
+        <parent link="leg_2_link_1"></parent>
+        <child link="leg_2_link_2"></child>
+        <origin xyz="0.055 0 -0.0230" rpy="0 0 -1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+
+    <link name="leg_2_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_2_link_3_joint" type="revolute">
+        <parent link="leg_2_link_2"></parent>
+        <child link="leg_2_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+
+
+    <link name="leg_3_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_3_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_3_link_1"></child>
+        <origin xyz="-0.04359 0.07621 0.056003" rpy="0 0 2.094399"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_3_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_3_link_2_joint" type="revolute">
+        <parent link="leg_3_link_1"></parent>
+        <child link="leg_3_link_2"></child>
+        <origin xyz="0.055 0 -0.0230" rpy="0 0 -1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_3_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_3_link_3_joint" type="revolute">
+        <parent link="leg_3_link_2"></parent>
+        <child link="leg_3_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_4_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_4_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_4_link_1"></child>
+        <origin xyz="-0.0884 0 0.056003" rpy="0 0 0"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_4_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_4_link_2_joint" type="revolute">
+        <parent link="leg_4_link_1"></parent>
+        <child link="leg_4_link_2"></child>
+        <origin xyz="-0.055 0 -0.0230" rpy="0 0 1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_4_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_4_link_3_joint" type="revolute">
+        <parent link="leg_4_link_2"></parent>
+        <child link="leg_4_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_5_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_5_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_5_link_1"></child>
+        <origin xyz="-0.04359 -0.07621 0.056003" rpy="0 0 -2.094399"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_5_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_5_link_2_joint" type="revolute">
+        <parent link="leg_5_link_1"></parent>
+        <child link="leg_5_link_2"></child>
+        <origin xyz="0.055 0 -0.0230" rpy="0 0 -1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_5_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_5_link_3_joint" type="revolute">
+        <parent link="leg_5_link_2"></parent>
+        <child link="leg_5_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_6_link_1">
+        <inertial>
+            <origin xyz="-0.037949941928318846 -0.09744132570425558 0.03883429888507256" rpy="0.0 0.0 0.0" />
+            <mass value="0.36914291072258437" />
+            <inertia ixx="0.00016583494987659382" iyy="0.00012963751307110523" izz="0.00018444108683002687" ixy="-3.1348156946775304e-05" iyz="4.360609764316677e-06" ixz="2.517892227090198e-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link1_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_6_link_1_joint" type="revolute">
+        <parent link="base_link"></parent>
+        <child link="leg_6_link_1"></child>
+        <origin xyz="0.04359 -0.07621 0.056003" rpy="0 0 -1.0472"></origin>
+        <axis xyz="0 0 1"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+
+    <link name="leg_6_link_2">
+        <inertial>
+            <origin xyz="0.03956033205668474 -0.0026359793082563333 -0.037825768790633305" rpy="0.0 8.511212647632786e-31 0.0" />
+            <mass value="0.5870673755794086" />
+            <inertia ixx="0.0002049978562715309" iyy="0.0008928463308917646" izz="0.0007745880375809385" ixy="6.572602663475909e-07" iyz="2.4549193540669483e-06" ixz="0.00016446227358901872" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link2_v1.STL" scale="-0.001 0.001 0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_6_link_2_joint" type="revolute">
+        <parent link="leg_6_link_1"></parent>
+        <child link="leg_6_link_2"></child>
+        <origin xyz="0.055 0 -0.0230" rpy="0 0 -1.5708"></origin>
+        <axis xyz="1 0 0"></axis>
+        <limit effort="100.0" lower="-0.7854" upper="0.7854" velocity="1.0"></limit>
+    </joint>
+
+    <link name="leg_6_link_3">
+        <inertial>
+            <origin xyz="0.06853528018735762 0.005084938941100754 -0.04720409525089698" rpy="0.0 1.2890988334177766e-30 0.0" />
+            <mass value="1.0486562054964048" />
+            <inertia ixx="0.0005905740206741282" iyy="0.002729452593835599" izz="0.0022871203346311766" ixy="0.00020547467588970537" iyz="-5.5925273058158886e-05" ixz="0.00047479762826372745" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"></origin>
+            <geometry>
+                <mesh filename="package://hexapod_description/meshes/Link3_v1.STL" scale="-0.001 0.001 -0.001"></mesh>
+            </geometry>
+        </collision>
+
+    </link>
+
+    <joint name="leg_6_link_3_joint" type="revolute">
+        <parent link="leg_6_link_2"></parent>
+        <child link="leg_6_link_3"></child>
+        <origin xyz="0 0.096 0" rpy="0 0 1.5708"></origin>
+        <axis xyz="0 1 0"></axis>
+        <limit effort="100.0" lower="0" upper="2.35619" velocity="1.0"></limit>
+    </joint>
+
+
+
+    <!-- gazebo references-->
+
+    <gazebo reference="leg_1_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_1_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_1_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_2_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_2_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_2_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_3_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_3_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_3_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_4_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_4_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_4_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_5_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_5_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_5_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_6_link_1">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_6_link_2">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    <gazebo reference="leg_6_link_3">
+        <mu1>1000000000000000000000000000000.0</mu1>
+        <mu2>1000000000000000000000000000000.0</mu2>
+        <kp>1000000000000000000000000000000.0</kp>
+        <kd>10.0</kd>
+    </gazebo>
+    
+
+
+
+</robot>

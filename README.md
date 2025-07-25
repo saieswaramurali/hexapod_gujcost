@@ -36,7 +36,7 @@ The hexapod robot is designed to perform walking, sitting, and standing motions 
 
 ## 🔧 Requirements
 
-- ROS 2 Foxy or later
+- ROS 2 Humble && ubuntu 22.04
 - Joystick (Xbox/PS)
 - ESP32 or other servo driver board
 - SC15 or compatible servos

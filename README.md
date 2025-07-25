@@ -2,50 +2,60 @@
 
 ![hexapod_rendered](https://github.com/user-attachments/assets/9dc10749-d024-4cbf-97d7-f600535d30f0)
 
-This repository contains the ROS 2 codebase for a hexapod robot developed as part of the GUJCOST-funded project.
+This repository contains the ROS 2 codebase for a hexapod robot developed under the GUJCOST-funded project. It includes joystick-based control, SLAM integration, step detection, and modular movement control.
 
 ## 🐜 Project Overview
 
-The hexapod robot is designed for walking, sitting, and standing motions using servo motors controlled via joystick input. It publishes servo angles through ROS 2 topics and is built to support real-time movement with future plans for autonomous navigation using reinforcement learning.
+The hexapod robot is designed to perform walking, sitting, and standing motions using servo motors. Control is handled via joystick input, and servo angles are published through ROS 2 topics. The robot is being extended to include autonomous navigation using SLAM and stair/step detection.
 
-## 🎮 Features
+---
 
-- Joystick-based control (using Xbox/PS controller)
-- Servo angle publishing on ROS 2 topic `/servo_angles`
-- Mode switching (walk, sit, stand) via button combinations
-- Feedback-ready integration (for SC15 servo telemetry)
-- Modular and scalable control logic
+## 🗂️ Package Structure
 
-## 📦 ROS 2 Package Structure
+| Package Name             | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `hexapod_controller`     | Handles joystick input and publishes servo angles                           |
+| `hexapod_publisher`      | Publishes data to topics (legacy/support module)                            |
+| `hexapod_description`    | URDF and robot model descriptions                                            |
+| `hexapod_mapping`        | Contains SLAM configuration and launch files                                |
+| `hexapod_step_detection` | Detects steps/stairs using vision or sensor data                            |
+| `src/`                   | Additional scripts or raw ROS 2 nodes                                       |
 
-- `hexapod_controller/`: Node handling joystick input and publishing servo angles
-- `msg_interfaces/`: Custom message definitions (if applicable)
-- `launch/`: Launch files to start the control stack
+---
 
-## 🧩 Topics
+## 🎮 Key Features
 
-- `/servo_angles` – Publishes an array of angles for each leg's servos
-- `/joy` – Subscribed topic from joystick device
+- Joystick control with mode switching (walk/sit/stand)
+- Servo angle publishing to `/servo_angles`
+- SLAM mapping using `slam_toolbox`
+- Step detection module for stair-aware movement
+- URDF-based robot visualization in RViz
+- SC15 servo driver compatible (feedback-ready)
+
+---
 
 ## 🔧 Requirements
 
 - ROS 2 Foxy or later
-- A joystick (e.g., Xbox, PS4)
-- SC15 servos (or compatible)
-- ESP32 or servo driver board (subscriber to `/servo_angles`)
+- Joystick (Xbox/PS)
+- ESP32 or other servo driver board
+- SC15 or compatible servos
+- Depth camera (e.g., Intel RealSense) for step detection
 
-## 🚀 How to Launch
+---
+
+## 🚀 Quick Start
 
 ```bash
 # Clone the repo inside your ROS 2 workspace
-cd ~/your_ros2_ws/src
+cd ~/ros2_ws/src
 git clone https://github.com/saieswaramurali/hexapod_gujcost.git
 
 # Build the workspace
-cd ~/your_ros2_ws
+cd ~/ros2_ws
 colcon build
 
-# Source and launch
+# Source and launch the controller
 source install/setup.bash
 ros2 launch hexapod_controller controller.launch.py
 

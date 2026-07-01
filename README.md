@@ -10,7 +10,7 @@ The hexapod robot is designed to perform walking, sitting, and standing motions 
 
 ---
 
-## 🗂️ Package Structure
+## Package Structure
 
 | Package Name             | Description                                                                 |
 |--------------------------|-----------------------------------------------------------------------------|
@@ -23,7 +23,7 @@ The hexapod robot is designed to perform walking, sitting, and standing motions 
 
 ---
 
-## 🎮 Key Features
+## Key Features
 
 - Joystick control with mode switching (walk/sit/stand)
 - Servo angle publishing to `/servo_angles`
@@ -34,7 +34,7 @@ The hexapod robot is designed to perform walking, sitting, and standing motions 
 
 ---
 
-## 🔧 Requirements
+## Requirements
 
 - ROS 2 Humble && ubuntu 22.04
 - Joystick (Xbox/PS)
@@ -44,7 +44,7 @@ The hexapod robot is designed to perform walking, sitting, and standing motions 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repo inside your ROS 2 workspace

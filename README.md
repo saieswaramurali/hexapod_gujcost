@@ -4,7 +4,7 @@
 
 This repository contains the ROS 2 codebase for a hexapod robot developed under the GUJCOST-funded project. It includes joystick-based control, SLAM integration, step detection, and modular movement control.
 
-## 🐜 Project Overview
+## Project Overview
 
 The hexapod robot is designed to perform walking, sitting, and standing motions using servo motors. Control is handled via joystick input, and servo angles are published through ROS 2 topics. The robot is being extended to include autonomous navigation using SLAM and stair/step detection.
 
